@@ -1,7 +1,13 @@
 import stripe from "@/lib/stripe";
 import Stripe from "stripe";
-import ProductCard from "@/components/shop/product-card";
+import ProductCard from "@/components/cart/product-card";
 import { Product } from "../../types";
+import Highlights from "@/components/shop/highlights";
+import Outlet from "@/components/shop/outlet";
+import Promotions from "@/components/shop/promotions";
+import Categories from "@/components/shop/categories";
+import FAQ from "@/components/personal/faq";
+import Intro from "@/components/personal/intro";
 
 async function getProducts() {
   try {
@@ -19,6 +25,7 @@ async function getProducts() {
         currency: (p.default_price as Stripe.Price)?.currency ?? "BRL",
         images: p.images,
         image: p.images[0],
+        category: p.metadata.category
       };
     });
   } catch (e) {
@@ -30,11 +37,12 @@ export default async function Home() {
   const products = await getProducts();
   return (
     <section className="container">
-      <div className="grid gap-4 m-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {products?.map((p) => (
-          <ProductCard {...p} />
-        ))}
-    </div>
+      <Categories/>
+      <Highlights/>
+      <Outlet/>
+      <Promotions/>
+      <Intro/>
+      <FAQ/>
     </section>
   );
 }

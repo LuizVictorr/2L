@@ -1,17 +1,8 @@
 "use client";
-
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "../ui/button";
 import Image from "next/image";
-
 import { useToast } from "@/components/ui/use-toast";
 
 interface ProductCardProps {
@@ -23,17 +14,11 @@ interface ProductCardProps {
   currency: string;
   image: string;
   images?: string[];
+  category: string;
 }
 
-export default function ProductCard({
-  id,
-  name,
-  description,
-  price,
-  currency,
-  image,
-  images,
-}: ProductCardProps) {
+export default function ProductCard({ id, name, description, price, currency, image, images, category }: ProductCardProps) {
+  
   const { addItem } = useShoppingCart();
 
   const { toast } = useToast();
@@ -53,6 +38,7 @@ export default function ProductCard({
       price: Number(price),
       currency,
       image,
+      category,
     });
 
     toast({

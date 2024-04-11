@@ -1,15 +1,15 @@
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Oxygen } from "next/font/google";
+import { Inter } from "next/font/google";
 import Header from "@/components/layout/header";
-import AppCartProvider from "@/components/shop/app-cart-provider";
+import AppCartProvider from "@/components/cart/app-cart-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Hydrate from "@/components/layout/hydrate";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import Footer from "@/components/layout/footer";
 
 const inter = Inter({ subsets: ["latin"] });
-const oxygem = Oxygen({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,18 +23,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(oxygem.className, "min-h-screen flex flex-col")}>
+      <body className={cn(inter.className, "min-h-screen flex flex-col")}>
         <Hydrate>
           <AppCartProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
               enableSystem
-              disableTransitionOnChange>
-
+              disableTransitionOnChange
+              >
               <Header />
               <main className="flex-grow">{children}</main>
               <Toaster />
+              <Footer/>
             </ThemeProvider>
           </AppCartProvider>
         </Hydrate>
