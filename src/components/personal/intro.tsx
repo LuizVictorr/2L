@@ -15,7 +15,7 @@ const Intro = () => {
 
     return (
         <div className="grid grid-cols-3 gap-5 grid-rows-2">
-            <div className=" border-slate-100 border-2 hover:bg-slate-100 w-full h-full col-span-2 row-span-2 rounded-lg flex gap-10 justify-between p-5">
+            <div className=" border-slate-100 border-2 w-full h-full col-span-2 row-span-2 rounded-lg flex gap-10 justify-between p-5">
                 <div className="space-y-4">
                     <h1 className=" text-4xl font-bold">Quem Somos</h1>
                     <p className="pb-12">
@@ -35,7 +35,7 @@ const Intro = () => {
                     height={400}
                 />
             </div>
-            <div className=" border-slate-100 border-2 hover:bg-slate-100 dark:bg-cyan-900 w-full h-full rounded-lg p-5 space-y-2">
+            <div className=" border-slate-100 border-2 dark:bg-slate-950 w-full h-full rounded-lg p-5 space-y-2">
                 <h1 className="text-2xl font-bold flex items-center gap-2"><span><FaNewspaper/></span>Newsletters</h1>
                 <p className="pb-5">
                     Cadastre-se agora e receba de antemão nossas principais ofertas e descontos
@@ -72,7 +72,7 @@ const Intro = () => {
                 </Dialog>
 
             </div>
-            <div className=" border-slate-100 border-2 hover:bg-slate-100 w-full h-full rounded-lg p-5">
+            <div className=" border-slate-100 border-2 w-full h-full rounded-lg p-5">
                 <h1 className="text-2xl font-bold flex items-center gap-2"><span><FaPaperPlane/></span>Depoimentos</h1>
                 <div className="px-10 py-5">
                     <Carousel>

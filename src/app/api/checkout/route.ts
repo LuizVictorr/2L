@@ -33,7 +33,7 @@ export async function POST(request: NextRequest){
         payment_method_types: ["card"],
         line_items: line_items,
         success_url: `${baseUrl}/success/{CHECKOUT_SESSION_ID}`,
-        cancel_url: `${baseUrl}/cart` 
+        cancel_url: `${baseUrl}/` 
     })
 
 

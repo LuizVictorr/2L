@@ -3,7 +3,7 @@ import { FaFacebook, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 text-white py-20 flex flex-col items-center text-center justify-center">
+    <footer className="bg-slate-950 text-white py-20 flex flex-col items-center text-center justify-center mt-5">
       <div className="flex mb-8">
         <a href="https://wa.me/3496450291" target="_blank" rel="noopener noreferrer" className="text-white mr-4">
           <FaWhatsapp className="text-2xl" />

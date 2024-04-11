@@ -120,7 +120,7 @@ const FAQ = () => {
           </Accordion>
           
           <div>
-            <div className="lg:sticky lg:top-10 lg:ml-10 border-slate-200 border-2 p-10 mt-5 text-center rounded-lg">
+            <div className="lg:sticky lg:top-32 lg:ml-10 border-slate-200 border-2 p-10 mt-5 text-center rounded-lg">
               <h1 className="text-2xl mb-1">
                 Ficou com alguma dúvida?
               </h1>

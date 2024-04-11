@@ -1,6 +1,5 @@
 import stripe from "@/lib/stripe";
 import Stripe from "stripe";
-import ProductCard from "@/components/cart/product-card";
 import { Product } from "../../types";
 import Highlights from "@/components/shop/highlights";
 import Outlet from "@/components/shop/outlet";
@@ -8,6 +7,8 @@ import Promotions from "@/components/shop/promotions";
 import Categories from "@/components/shop/categories";
 import FAQ from "@/components/personal/faq";
 import Intro from "@/components/personal/intro";
+import Image from "next/image";
+import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 async function getProducts() {
   try {
@@ -34,15 +35,27 @@ async function getProducts() {
 }
 
 export default async function Home() {
-  const products = await getProducts();
   return (
     <section className="container">
-      <Categories/>
-      <Highlights/>
-      <Outlet/>
-      <Promotions/>
-      <Intro/>
-      <FAQ/>
+      <div className="">
+        <AspectRatio ratio={16 / 9}>
+        <Image 
+            src="/universe.jpg" 
+            width={10000}
+            height={10}
+            alt="Image" 
+            className="rounded-lg" 
+          />
+        </AspectRatio>
+      </div>
+      <div className="space-y-32">
+        <Categories/>
+        <Highlights/>
+        <Outlet/>
+        <Promotions/>
+        <Intro/>
+        <FAQ/>
+      </div>
     </section>
   );
 }
