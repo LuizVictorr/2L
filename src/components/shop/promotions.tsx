@@ -50,8 +50,10 @@ const Promotions = async () => {
         <div className="py-10 space-y-5">
           <div className="flex justify-between">
                 <h1 className="text-4xl font-bold pb-5">Promoções</h1>
-                <Link href={"/"}>
-                    <p className="flex items-center gap-2 hover:font-bold hover:text-slate-400">Ver Mais <span><FaArrowAltCircleRight/></span></p>
+                <Link href="/shopping?filter=promotions">
+                  <p className="flex items-center gap-2 hover:font-bold hover:text-slate-400">
+                  Ver Mais <span><FaArrowAltCircleRight/></span>
+                  </p>
                 </Link>
             </div>
           <div className="px-10">

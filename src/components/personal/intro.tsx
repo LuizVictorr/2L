@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import Link from "next/link";
 import { Button } from "../ui/button";
+import Newsletters from "./newsletters";
 
   
 
@@ -35,43 +36,7 @@ const Intro = () => {
                     height={400}
                 />
             </div>
-            <div className=" border-slate-100 border-2 dark:bg-slate-950 w-full h-full rounded-lg p-5 space-y-2">
-                <h1 className="text-2xl font-bold flex items-center gap-2"><span><FaNewspaper/></span>Newsletters</h1>
-                <p className="pb-5">
-                    Cadastre-se agora e receba de antemão nossas principais ofertas e descontos
-                </p>
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <Button>Cadastre-se</Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                        <DialogTitle>Newsletters</DialogTitle>
-                        <DialogDescription>
-                            Preencha todos os campos para ter acesso a todas as nossas promoções
-                        </DialogDescription>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="name" className="text-right">
-                            Nome
-                            </Label>
-                            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="email" className="text-right">
-                            Email
-                            </Label>
-                            <Input id="email" value="example@gmail.com" className="col-span-3" />
-                        </div>
-                        </div>
-                        <DialogFooter>
-                        <Button type="submit">Salvar</Button>
-                        </DialogFooter>
-                    </DialogContent>
-                </Dialog>
-
-            </div>
+            <Newsletters/>    
             <div className=" border-slate-100 border-2 w-full h-full rounded-lg p-5">
                 <h1 className="text-2xl font-bold flex items-center gap-2"><span><FaPaperPlane/></span>Depoimentos</h1>
                 <div className="px-10 py-5">

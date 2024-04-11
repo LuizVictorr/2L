@@ -1,6 +1,7 @@
 'use client'
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import ProductCard from '../cart/product-card';
+import { useSearchParams } from 'next/navigation';
 
 interface Product {
   id: string;
@@ -28,6 +29,27 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
   const [promotionChecked, setPromotionChecked] = useState<boolean>(false);
   const [highlightsChecked, setHighlightsChecked] = useState<boolean>(false);
 
+  const searchParams = useSearchParams().get("filter")
+
+  useEffect(() => {
+    if (searchParams === "promotions") {
+      setPromotionChecked(true);
+    } else if (searchParams === "outlet") {
+      setOutletChecked(true);
+    } else if (searchParams === "highlights") {
+      setHighlightsChecked(true);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    const categories = Array.from(new Set(products?.map((product) => product.category)));
+  
+    if (searchParams) {
+      const updatedSelectedCategories = categories.filter(category => searchParams.includes(category));
+      setSelectedCategories(updatedSelectedCategories);
+    }
+  }, [searchParams, products]);
+
   const handleToggleCategory = (category: string) => {
     const index = selectedCategories.indexOf(category);
     if (index === -1) {
@@ -41,7 +63,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
     setOutletChecked(!outletChecked);
   };
 
-  const filteredProducts = products?.filter((product) => {
+  const filteredProductsByOutlet = products?.filter((product) => {
     if (outletChecked) {
       return product.outlet === 'True';
     }
@@ -56,7 +78,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
     setPromotionChecked(!promotionChecked);
   };
 
-  const filteredProductsByPromotion = filteredProducts?.filter((product) => {
+  const filteredProductsByPromotion = filteredProductsByOutlet?.filter((product) => {
     if (promotionChecked) {
       return product.promotion === 'True';
     }
@@ -83,7 +105,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
     <div>
         <div className='fixed px-10 pt-2'>
             <div>
-                <h1 className='pb-3 text-xl font-bold'>Categorias</h1>
+                <h1 className='pb-3 text-xl font-bold'>Categorias </h1>
                 <ul className=' space-y-5 pb-10'>
                 {Array.from(new Set(products?.map((product) => product.category))).map((category, index) => (
                     <li key={index}>

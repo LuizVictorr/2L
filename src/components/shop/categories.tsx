@@ -1,6 +1,7 @@
 import stripe from "@/lib/stripe";
 import Stripe from 'stripe';
 import { Product } from "../../../types";
+import Link from "next/link";
 
 async function getProducts() {
     try {
@@ -32,7 +33,6 @@ const Categories = async () => {
 
     const products = await getProducts();
 
-    // Extrair categorias únicas
     const uniqueCategories = Array.from(new Set(products?.map(product => product.category)));
 
     return (
@@ -40,7 +40,9 @@ const Categories = async () => {
             <div className="flex justify-center items-center text-center text-xl gap-10">
                 {uniqueCategories.map((category, index) => (
                     <div key={index}>
-                        <h1 className="hover:font-bold hover:text-slate-400">{category}</h1>
+                        <Link href={`/shopping?filter=${category}`}>
+                          <h1 className="hover:font-bold hover:text-slate-400">{category}</h1>
+                        </Link>
                     </div>
                 ))}
             </div>

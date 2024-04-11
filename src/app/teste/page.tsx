@@ -1,5 +1,7 @@
+'use client'
 import { NextPage } from 'next';
-import ProductList from '@/components/teste/product-list';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react'; // Importe o useState para gerenciar o estado do checkbox
 
 interface Product {
   name: string;
@@ -8,41 +10,45 @@ interface Product {
 }
 
 const Home: NextPage = () => {
+  const [promotions, setPromotions] = useState(false);
+  const [outlet, setOutlet] = useState(false);
+  const [highlights, setHighlights] = useState(false);
 
-  const products: Product[] = [
-    {
-      name: "Camisa Polo",
-      price: 39.99,
-      category: "Roupas",
-    },
-    {
-      name: "Tênis Esportivo",
-      price: 99.99,
-      category: "Calçados",
-    },
-    {
-      name: "Celular Smartphone",
-      price: 899.99,
-      category: "Eletrônicos",
-    },
-    {
-      name: "Livro de Ficção",
-      price: 19.99,
-      category: "Eletrônicos",
-    },
-    {
-      name: "Fones de Ouvido Bluetooth",
-      price: 49.99,
-      category: "Acessórios Eletrônicos",
-    },
-  ];
+  const searchParams = useSearchParams().get("filtro")
+
+  useEffect(() => {
+    if (searchParams === "promotions") {
+      setPromotions(true);
+      setOutlet(false);
+      setHighlights(false);
+    } else if (searchParams === "outlet") {
+      setPromotions(false);
+      setOutlet(true);
+      setHighlights(false);
+    } else if (searchParams === "highlights") {
+      setPromotions(false);
+      setOutlet(false);
+      setHighlights(true);
+    }
+  }, [searchParams]);
+
 
 
   return (
     <div className='flex gap-5'>
       <h1>Produtos</h1>
-      
-      <ProductList products={products} />
+      <label>
+        <input type="checkbox" checked={promotions} onChange={(e) => setPromotions(e.target.checked)} />
+        Promoções
+      </label>
+      <label>
+        <input type="checkbox" checked={outlet} onChange={(e) => setOutlet(e.target.checked)} />
+        Outlet
+      </label>
+      <label>
+        <input type="checkbox" checked={highlights} onChange={(e) => setHighlights(e.target.checked)} />
+        Highlights
+      </label>
     </div>
   );
 };

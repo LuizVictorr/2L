@@ -7,6 +7,7 @@ import stripe from "@/lib/stripe";
 import { Product } from "../../../types";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 import ProductCard from "../cart/product-card";
+import { useRouter } from 'next/router';
 
 async function getProducts() {
     try {
@@ -42,14 +43,18 @@ async function getProducts() {
 
 const Outlet = async () => {
 
+
+
   const products = await getProducts();
 
     return (
         <div className="py-10 space-y-5">
           <div className="flex justify-between">
                 <h1 className="text-4xl font-bold pb-5">Outlet</h1>
-                <Link href={"/"}>
-                    <p className="flex items-center gap-2 hover:font-bold hover:text-slate-400">Ver Mais <span><FaArrowAltCircleRight/></span></p>
+                <Link href="/shopping?filter=outlet">
+                  <p className="flex items-center gap-2 hover:font-bold hover:text-slate-400">
+                  Ver Mais <span><FaArrowAltCircleRight/></span>
+                  </p>
                 </Link>
             </div>
           <div className="px-10">

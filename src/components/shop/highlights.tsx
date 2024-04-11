@@ -46,8 +46,10 @@ const Highlights = async () => {
         <div>
             <div className="flex justify-between">
                 <h1 className="text-4xl font-bold pb-5">Destaques</h1>
-                <Link href={"/shopping"}>
-                    <p className="flex items-center gap-2 hover:font-bold hover:text-slate-400">Ver Mais <span><FaArrowAltCircleRight/></span></p>
+                <Link href="/shopping?filter=highlights">
+                  <p className="flex items-center gap-2 hover:font-bold hover:text-slate-400">
+                  Ver Mais <span><FaArrowAltCircleRight/></span>
+                  </p>
                 </Link>
             </div>
             <div className="grid grid-cols-4 gap-4 px-10">

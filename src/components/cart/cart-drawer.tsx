@@ -1,6 +1,6 @@
 "use client";
 import { useShoppingCart } from "use-shopping-cart";
-import { Loader, MinusIcon, PlusIcon, Sheet, Trash2 } from "lucide-react";
+import { Loader, MinusIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
