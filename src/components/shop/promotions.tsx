@@ -30,7 +30,10 @@ async function getProducts() {
           currency: (p.default_price as Stripe.Price)?.currency ?? "BRL",
           images: p.images,
           image: p.images[0],
-          category: p.metadata.category
+          category: p.metadata.category,
+          outlet: p.metadata.outlet,
+          promotion: p.metadata.promotion,
+          highlights: p.metadata.highlights,
         };
       });
     } catch (e) {

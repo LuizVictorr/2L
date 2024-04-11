@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { FaArrowAltCircleRight } from "react-icons/fa";
 import stripe from "@/lib/stripe";
 import Stripe from "stripe";
 import { Product } from "../../../types";
-import ProductCard from "@/components/cart/product-card";
+import ProductList from "@/components/shop/product-list";
 
 
 async function getProducts() {
@@ -13,12 +12,7 @@ async function getProducts() {
         expand: ["data.default_price"],
       });
 
-      const filteredProducts = stripeProducts.data.filter(product => {
-        return product.metadata.highlights === "True";
-      }
-    );
-  
-      return filteredProducts.map((p: Stripe.Product): Product => {
+      return stripeProducts.data.map((p: Stripe.Product): Product => {
         return {
           id: p.id.toString(),
           name: p.name,
@@ -27,7 +21,10 @@ async function getProducts() {
           currency: (p.default_price as Stripe.Price)?.currency ?? "BRL",
           images: p.images,
           image: p.images[0],
-          category: p.metadata.category
+          category: p.metadata.category,
+          outlet: p.metadata.outlet,
+          promotion: p.metadata.promotion,
+          highlights: p.metadata.highlights,
         };
       });
     } catch (e) {
@@ -40,16 +37,9 @@ const Highlights = async () => {
 
     const products = await getProducts();
 
-    products?.filter
-
     return (
         <div>
-            
-            <div className="grid grid-cols-4 gap-4 px-10">
-                {products?.map((p) => (
-                    <ProductCard {...p} />
-                ))}
-            </div>
+              <ProductList products={products}/>
         </div>
     )
 }

@@ -17,7 +17,7 @@ import CartDrawer from "../cart/cart-drawer";
 const Header = () => {
 
     return (
-      <header className="sticky top-0 z-10 shadow bg-white dark:bg-slate-950 mb-5">
+      <header className="sticky top-0 z-10 mb-5 shadow bg-white dark:bg-slate-950">
         <div>
             <ul className="flex justify-between px-10 pt-10 pb-5">
                 <li className="cursor-pointer">
