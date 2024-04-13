@@ -10,4 +10,7 @@ export interface Product {
     outlet:      string;
     promotion:   string;
     highlights:  string;
+    p:           string;
+    m:           string;
+    g:           string;
 }

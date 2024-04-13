@@ -26,7 +26,7 @@ const Intro = () => {
                         excelência reflete nossa dedicação em tornar a sua experiência de compra suave e satisfatória.
                     </p>
                     <Button>
-                        <Link href={"/about"}> Saiba Mais </Link> 
+                        <Link href={"/shopping"}> Ver Nossos Produtos </Link> 
                     </Button>
                 </div>
                 <Image

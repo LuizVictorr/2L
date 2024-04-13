@@ -44,7 +44,11 @@ export default function CartDrawer() {
                         </div>
                         <div>
                             <h1>{cartDetails[key].name}</h1>
-                            <p className="text-xs truncate">{cartDetails[key].description}</p>
+                            <div className="flex gap-3">
+                              <p>{cartDetails[key].p}</p>
+                              <p>{cartDetails[key].m}</p>
+                              <p>{cartDetails[key].g}</p>
+                            </div>
                         </div>
                     </div>
                   <div>

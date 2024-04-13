@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import stripe from "@/lib/stripe";
-import AddCard from "@/components/cart/add-card";
+import AddCard from "@/components/shop/add-card";
+
 
 type ProductPageProps = {
     params: {
@@ -26,6 +27,9 @@ async function getProducts(id: string) {
           outlet: product.metadata.outlet,
           promotion: product.metadata.promotion,
           highlights: product.metadata.highlights,
+          p: product.metadata.P,
+          m: product.metadata.M,
+          g: product.metadata.G
         };
     } catch (e) {
       console.log(e);
@@ -46,7 +50,10 @@ const Outlet = async ({ params: {id} }: ProductPageProps) => {
                 price={products?.price} 
                 currency={products?.currency} 
                 image={products?.image} 
-                category={products?.category}/>
+                category={products?.category}
+                p={products.p}
+                m={products.m}
+                g={products.g}/>
           </div>
         </div>
     )

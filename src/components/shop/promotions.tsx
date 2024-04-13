@@ -6,7 +6,7 @@ import stripe from "@/lib/stripe";
 import { Product } from "../../../types";
 import { Button } from "../ui/button";
 import { Carousel, CarouselPrevious, CarouselContent, CarouselItem, CarouselNext } from "../ui/carousel";
-import ProductCard from "../cart/product-card";
+import ProductCard from "./product-card";
 
 
 async function getProducts() {

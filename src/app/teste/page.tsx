@@ -1,56 +1,59 @@
-'use client'
-import { NextPage } from 'next';
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react'; // Importe o useState para gerenciar o estado do checkbox
+"use client"
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
-interface Product {
-  name: string;
-  price: number;
-  category: string;
-}
+type Tamanho = "P" | "M" | "G";
 
-const Home: NextPage = () => {
-  const [promotions, setPromotions] = useState(false);
-  const [outlet, setOutlet] = useState(false);
-  const [highlights, setHighlights] = useState(false);
+const TamanhoComponent: React.FC = () => {
+  const [tamanhoSelecionado, setTamanhoSelecionado] = useState<Tamanho | null>(null);
 
-  const searchParams = useSearchParams().get("filtro")
-
-  useEffect(() => {
-    if (searchParams === "promotions") {
-      setPromotions(true);
-      setOutlet(false);
-      setHighlights(false);
-    } else if (searchParams === "outlet") {
-      setPromotions(false);
-      setOutlet(true);
-      setHighlights(false);
-    } else if (searchParams === "highlights") {
-      setPromotions(false);
-      setOutlet(false);
-      setHighlights(true);
+  const handleSelecionarTamanho = (tamanho: Tamanho) => {
+    if (tamanho === tamanhoSelecionado) {
+      // Se o tamanho já estiver selecionado, desselecione-o
+      setTamanhoSelecionado(null);
+    } else {
+      // Senão, selecione-o
+      setTamanhoSelecionado(tamanho);
     }
-  }, [searchParams]);
-
-
+  };
 
   return (
-    <div className='flex gap-5'>
-      <h1>Produtos</h1>
-      <label>
-        <input type="checkbox" checked={promotions} onChange={(e) => setPromotions(e.target.checked)} />
-        Promoções
-      </label>
-      <label>
-        <input type="checkbox" checked={outlet} onChange={(e) => setOutlet(e.target.checked)} />
-        Outlet
-      </label>
-      <label>
-        <input type="checkbox" checked={highlights} onChange={(e) => setHighlights(e.target.checked)} />
-        Highlights
-      </label>
+    <div>
+      <h2>Escolha o tamanho:</h2>
+      <div className="flex justify-center">
+        <button
+          className={cn("mx-2 py-2 px-4 rounded", {
+            "bg-blue-500 text-white": tamanhoSelecionado === "P",
+            "bg-gray-200 text-gray-700": tamanhoSelecionado !== "P"
+          })}
+          onClick={() => handleSelecionarTamanho("P")}
+        >
+          P
+        </button>
+        <button
+          className={cn("mx-2 py-2 px-4 rounded", {
+            "bg-blue-500 text-white": tamanhoSelecionado === "M",
+            "bg-gray-200 text-gray-700": tamanhoSelecionado !== "M"
+          })}
+          onClick={() => handleSelecionarTamanho("M")}
+        >
+          M
+        </button>
+        <button
+          className={cn("mx-2 py-2 px-4 rounded", {
+            "bg-blue-500 text-white": tamanhoSelecionado === "G",
+            "bg-gray-200 text-gray-700": tamanhoSelecionado !== "G"
+          })}
+          onClick={() => handleSelecionarTamanho("G")}
+        >
+          G
+        </button>
+      </div>
+      {tamanhoSelecionado && (
+        <p className="mt-4">Tamanho selecionado: {tamanhoSelecionado}</p>
+      )}
     </div>
   );
 };
 
-export default Home;
+export default TamanhoComponent;

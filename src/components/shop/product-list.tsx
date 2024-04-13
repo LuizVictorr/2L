@@ -1,6 +1,6 @@
 'use client'
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import ProductCard from '../cart/product-card';
+import ProductCard from './product-card';
 import { useSearchParams } from 'next/navigation';
 
 interface Product {

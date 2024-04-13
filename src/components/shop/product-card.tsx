@@ -29,7 +29,7 @@ export default function ProductCard({ id, name, description, price, currency, im
 
   return (
     <Link href={`/product/${id}`}>
-      <Card className="bg-slate-50 border-0">
+      <Card className="bg-slate-50 dark:bg-slate-900 border-0">
         <CardHeader>
           <CardTitle className="flex items-center justify-center min-h-[4rem]">
             {name}

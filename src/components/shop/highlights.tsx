@@ -3,7 +3,7 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 import stripe from "@/lib/stripe";
 import Stripe from "stripe";
 import { Product } from "../../../types";
-import ProductCard from "../cart/product-card";
+import ProductCard from "./product-card";
 
 async function getProducts() {
     try {

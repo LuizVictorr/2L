@@ -20,6 +20,9 @@ export async function POST(request: NextRequest){
             price: (p.default_price as Stripe.Price)?.unit_amount ?? 0,
             currency: (p.default_price as Stripe.Price)?.currency ?? "BRL",
             image: p.images[0],
+            p: p.metadata.P,
+            m: p.metadata.M,
+            g: p.metadata.G,
         }
     })
 

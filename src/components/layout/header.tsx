@@ -9,10 +9,13 @@ import Link from "next/link";
 import { ModeToggle } from "../theme/dark-mode";
 import { Button } from "../ui/button";
 import CartDrawer from "../cart/cart-drawer";
+import { useShoppingCart } from "use-shopping-cart";
 
   
 
 const Header = () => {
+
+    const { cartCount } = useShoppingCart();
 
     return (
       <header className="sticky top-0 z-10 mb-5 shadow bg-white dark:bg-slate-950">
@@ -91,14 +94,6 @@ const Header = () => {
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
-
-                            <NavigationMenuItem>
-                                <Link href="/about" legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        Sobre Nós
-                                    </NavigationMenuLink>
-                                </Link>
-                            </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
                 </li>
@@ -121,24 +116,34 @@ const Header = () => {
 
 
                     
+                    <div className="relative">
+                        {cartCount === 0 ?
+                            <p></p>
+                        :
+                            <p className="absolute text-[9px] top-0 right-0 -translate-y-2 translate-x-1 bg-slate-900 
+                                text-white rounded p-1 dark:bg-slate-100 dark:text-black">
+                            {cartCount}
+                            </p> 
+                        }
 
-                    <Button variant="outline" size="icon">
-                        <Sheet>
-                            <SheetTrigger asChild className=" cursor-pointer">
-                                <FaShoppingCart/>
-                            </SheetTrigger>
-                            <SheetContent className="flex flex-col justify-between">
-                                <div>
-                                    <SheetHeader>
-                                    <SheetTitle>Meu Carrinho</SheetTitle>
-                                    <SheetDescription className="flex justify-between text-md">
-                                      <CartDrawer/>
-                                    </SheetDescription>
-                                    </SheetHeader>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </Button>
+                        <Button variant="outline" size="icon">
+                            <Sheet>
+                                <SheetTrigger asChild className=" cursor-pointer">
+                                    <FaShoppingCart/>
+                                </SheetTrigger>
+                                <SheetContent className="flex flex-col justify-between">
+                                    <div>
+                                        <SheetHeader>
+                                        <SheetTitle>Meu Carrinho</SheetTitle>
+                                        <SheetDescription className="flex justify-between text-md">
+                                        <CartDrawer/>
+                                        </SheetDescription>
+                                        </SheetHeader>
+                                    </div>
+                                </SheetContent>
+                            </Sheet>
+                        </Button>
+                    </div>
 
                     <ModeToggle/>
                 </li>
