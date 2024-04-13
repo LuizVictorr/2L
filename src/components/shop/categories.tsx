@@ -36,8 +36,8 @@ const Categories = async () => {
     const uniqueCategories = Array.from(new Set(products?.map(product => product.category)));
 
     return (
-        <div>
-            <div className="flex justify-center items-center text-center text-xl gap-10">
+        <ul>
+            <li className="flex justify-center items-center text-center text-xl gap-10">
                 {uniqueCategories.map((category, index) => (
                     <div key={index}>
                         <Link href={`/shopping?filter=${category}`}>
@@ -45,8 +45,8 @@ const Categories = async () => {
                         </Link>
                     </div>
                 ))}
-            </div>
-        </div>
+            </li>
+        </ul>
     )
 }
 

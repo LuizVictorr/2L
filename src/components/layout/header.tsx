@@ -1,5 +1,3 @@
-import CartButton from "./cart-button";
-
 'use client'
 import Image from "next/image";
 import { FaShoppingCart, FaUser } from "react-icons/fa";

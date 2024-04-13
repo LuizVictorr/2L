@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 
 interface ProductCardProps {
   id: string;
@@ -18,10 +19,6 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ id, name, description, price, currency, image, images, category }: ProductCardProps) {
-  
-  const { addItem } = useShoppingCart();
-
-  const { toast } = useToast();
 
   const formattedPrice = formatCurrencyString({
     value: Number(price),
@@ -29,52 +26,39 @@ export default function ProductCard({ id, name, description, price, currency, im
     language: "pt-BR",
   });
 
-  async function addToCart(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    addItem({
-      name,
-      description,
-      id,
-      price: Number(price),
-      currency,
-      image,
-      category,
-    });
-
-    toast({
-      title: `🎉 ${name} Adicionado`,
-      description: "Adicione mais por descontos.",
-    });
-  }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center justify-center min-h-[4rem]">
-          {name}
-        </CardTitle>
-        <CardDescription className="relative w-full h-60">
-          <Image
-            src={image}
-            fill
-            sizes="100%"
-            alt={name}
-            className="object-contain"
-          />
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex items-center justify-center">
-        <p className="min-h-[6rem]">{description}</p>
-      </CardContent>
-      <CardFooter className="flex items-center justify-between">
-        <div>
-          <p>Preço</p>
-          <p>{formattedPrice}</p>
-        </div>
-        <Button size={"lg"} variant={"default"} onClick={addToCart}>
-          Comprar
-        </Button>
-      </CardFooter>
-    </Card>
+    <Link href={`/product/${id}`}>
+      <Card className="bg-slate-50 border-0">
+        <CardHeader>
+          <CardTitle className="flex items-center justify-center min-h-[4rem]">
+            {name}
+          </CardTitle>
+          <CardDescription className="relative w-full h-60">
+            <Image
+              src={image}
+              fill
+              sizes="100%"
+              alt={name}
+              className="object-contain"
+              />
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex items-center justify-center">
+          <p className="truncate px-3">{description}</p>
+        </CardContent>
+        <CardFooter className="flex items-center justify-between">
+          <div>
+            <p>Preço</p>
+            <p>{formattedPrice}</p>
+          </div>
+            <Button size={"lg"} variant={"default"}>
+              <Link href={`/product/${id}`}>
+                Ver Mais
+              </Link>
+            </Button>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }
