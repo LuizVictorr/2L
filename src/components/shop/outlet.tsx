@@ -34,6 +34,9 @@ async function getProducts() {
           outlet: p.metadata.outlet,
           promotion: p.metadata.promotion,
           highlights: p.metadata.highlights,
+          p: p.metadata.P,
+          m: p.metadata.M,
+          g: p.metadata.G,
         };
       });
     } catch (e) {
