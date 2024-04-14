@@ -43,17 +43,19 @@ const Outlet = async ({ params: {id} }: ProductPageProps) => {
     return (
         <div>
           <div className="px-10">
+          {products && (
             <AddCard 
-                id={products?.id} 
-                name={products?.name} 
-                description={products?.description}
-                price={products?.price} 
-                currency={products?.currency} 
-                image={products?.image} 
-                category={products?.category}
-                p={products.p}
-                m={products.m}
-                g={products.g}/>
+            id={products?.id} 
+            name={products?.name} 
+            description={products?.description}
+            price={products?.price} 
+            currency={products?.currency} 
+            image={products?.image} 
+            category={products?.category}
+            p={products.p}
+            m={products.m}
+            g={products.g}/>
+          )}
           </div>
         </div>
     )
